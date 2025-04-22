@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply antialiased;
+    }
+}
+
+@layer components {
+    .container {
+        @apply max-w-7xl mx-auto;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    outline: 1px solid red !important;
+}
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+    scroll-behavior: smooth;
+    background-color: white;
+    @apply font-sans antialiased overflow-x-hidden;
+    @apply font-sans antialiased;
+    width: 100vw;
+    outline: 1px solid red !important;
+    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+}
+@font-face {
+    font-family: "DB Helvethaica Mon X"; /* << ชื่อที่จะใช้ */
+    src: url("/fonts/DBHelvethaicaMonX-Reg.woff2") format("woff2"); /* << แก้ชื่อไฟล์ Regular */
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "DB Helvethaica Mon X";
+    src: url("/fonts/DBHelvethaicaMonX-Med.woff2") format("woff2"); /* << แก้ชื่อไฟล์ Medium (ถ้ามี) */
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "DB Helvethaica Mon X";
+    src: url("/fonts/DBHelvethaicaMonX-Bold.woff2") format("woff2"); /* << แก้ชื่อไฟล์ Bold */
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+/* ... เพิ่มน้ำหนักอื่นๆ ถ้ามี ... */
