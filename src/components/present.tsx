@@ -19,7 +19,7 @@ export default function Present() {
           transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
         >
           <motion.div
-            className="relative w-full h-72 md:h-[100vh] overflow-hidden"
+            className="relative w-full h-72 md:h-[600px] overflow-hidden"
             variants={{
               hidden: { opacity: 0, x: -50 },
               visible: { opacity: 1, x: 0 },
@@ -59,7 +59,7 @@ export default function Present() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
               }}
-              className="text-3xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-teal-600 via-sky-500 to-indigo-500 drop-shadow-md"
+              className="text-3xl md:text-5xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-blue-700 to-blue-900 drop-shadow-md"
             >
               AFTERDENT สูตรที่หมอใช้ในห้องฟัน!
             </motion.h2>
@@ -69,7 +69,7 @@ export default function Present() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
               }}
-              className="text-base md:text-lg text-gray-800 md:text-gray-600 leading-relaxed"
+              className="text-base md:text-2xl text-gray-800 md:text-gray-600 leading-relaxed space-y-4"
             >
               <span className="block md:hidden">
                 AFTERDENT ถูกออกแบบมาเพื่อใช้ในคลินิก LDC Dental

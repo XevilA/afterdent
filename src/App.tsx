@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LDCSection from "./components/ldc";
 import Present from "./components/present";
+import ShowPresentSection from "./components/ShowPresentSection";
 // --- Framer Motion & I./components/GalleryRoxdw-
 import {
   motion,
@@ -335,7 +336,7 @@ function App() {
               {/* รูปภาพด้านบน (Responsive Aspect Ratio) */}
               <div className="w-full aspect-video md:aspect-[16/10] bg-gray-100 overflow-hidden relative">
                 <motion.img
-                  src="/AFTERDENTToothpasteCranberry .png"
+                  src="/afterdentpresent.png"
                   alt="Product Ad"
                   className="w-full h-full object-cover"
                   loading="lazy"
@@ -346,11 +347,17 @@ function App() {
               <div className="p-4 md:p-5 flex-grow flex flex-col font-sans">
                 <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-1 md:mb-2">
                   {" "}
-                  Afterdent — รอยยิ้มที่ดี...{" "}
+                  AFTERDENT สูตรที่หมอใช้ในห้องฟัน!{" "}
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4 flex-grow">
-                  {" "}
-                  เผยรอยยิ้มที่ดูดี...{" "}
+                <p className="text-md text-gray-600 leading-relaxed mb-4  flex-grow">
+                  ลิตภัณฑ์ของเราได้รับการออกแบบมาเพื่อใช้ในคลินิก LDC Dental
+                  โดยทันตแพทย์จะแนะนำให้ผู้ป่วยใช้ก่อนการรักษาเพื่อเตรียมความพร้อม
+                  และลดความเสี่ยงของการติดเชื้อ
+                  <br />
+                  รสชาติแครนเบอร์รี่หอมหวานทำให้การบ้วนปากเป็นเรื่องง่ายและน่าสนุก
+                  เหมาะสำหรับทุกเพศทุกวัย ให้คุณดูแลสุขภาพช่องปากได้อย่างมั่นใจ
+                  <br />
+                  เพราะนี่คือสูตรที่หมอเลือกใช้.
                 </p>
                 {/* Interaction Buttons (ใช้รูปภาพ + Responsive Size) */}
                 <div className="flex items-center justify-between text-gray-700 border-t border-gray-100 pt-3 mt-auto">
@@ -427,7 +434,7 @@ function App() {
                   {/* แสดงรูปภาพคอมเมนต์ 4 รูป */}
                   <motion.img
                     variants={fadeInUp}
-                    src="/comment1.avif"
+                    src="/1.avif"
                     alt="Comment 1"
                     className="w-full h-auto rounded-lg shadow-sm block"
                     loading="lazy"
@@ -435,7 +442,7 @@ function App() {
                   {/* << แก้ Path */}
                   <motion.img
                     variants={fadeInUp}
-                    src="/comment2.avif"
+                    src="/2.avif"
                     alt="Comment 2"
                     className="w-full h-auto rounded-lg shadow-sm block"
                     loading="lazy"
@@ -443,7 +450,7 @@ function App() {
                   {/* << แก้ Path */}
                   <motion.img
                     variants={fadeInUp}
-                    src="/comment3.avif"
+                    src="/3.avif"
                     alt="Comment 3"
                     className="w-full h-auto rounded-lg shadow-sm block"
                     loading="lazy"
@@ -451,7 +458,7 @@ function App() {
                   {/* << แก้ Path */}
                   <motion.img
                     variants={fadeInUp}
-                    src="/comment4.avif"
+                    src="/4.avif"
                     alt="Comment 4"
                     className="w-full h-auto rounded-lg shadow-sm block"
                     loading="lazy"
@@ -572,8 +579,9 @@ function App() {
               ผลิตภัณฑ์ที่ดีที่สุดของเรา
             </h2>
             {/* Subtitle p: ใช้ font-sans */}
-            <p className="text-md md:text-lg text-gray-500 max-w-2xl mx-auto font-sans">
-              Effective solutions for your daily oral hygiene routine.
+            <p className="text-lg md:text-lg text-gray-500 max-w-2xl mx-auto font-sans">
+              ผลิตภัณฑ์แนะนำจากทันตแพทย์ รสชาติแครนเบอร์รี่หอมหวาน
+              เหมาะสำหรับทุกเพศทุกวัย ช่วยลดความเสี่ยงการติดเชื้อและดูแลช่องปาก.
             </p>
           </motion.div>
 
@@ -714,7 +722,6 @@ function App() {
           </div>
         </section>
       )}
-      {/* === Section (Style ตาม Screenshot - ใช้รูปภาพเกือบทั้งหมด) === */}
       <section
         id="review"
         className="py-16 md:py-20 bg-white overflow-hidden scroll-mt-16 md:scroll-mt-20"
@@ -727,107 +734,89 @@ function App() {
             viewport={{ once: true, amount: 0.2 }}
             variants={staggerContainer}
           >
-            {/* --- คอลัมน์ซ้าย (วางรูปภาพซ้อนกัน) --- */}
+            {/* คอลัมน์ซ้าย */}
             <motion.div
-              // Container หลัก ใช้ relative เพื่อให้ absolute ข้างในอ้างอิงได้
-              className="relative w-full max-w-sm mx-auto md:max-w-md" // << ปรับ max-w ให้เหมาะสม
+              className="relative w-full max-w-sm mx-auto md:max-w-md"
               variants={fadeInLeft}
             >
-              {/* 1. รูปภาพ Sidebar (อยู่หลังสุด แต่โผล่มาด้านข้าง) */}
               <motion.img
-                src="/img9.webp" // <<== แก้ Path รูป Sidebar
+                src="/LDCIMG39.jpg"
                 alt="Sidebar"
-                className="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-[40%] sm:-translate-x-[50%] w-16 sm:w-20 z-10" // << ปรับตำแหน่ง/ขนาด
+                className="absolute top-1/2 -translate-y-1/2 left-0 -translate-x-[40%] sm:-translate-x-[50%] w-16 sm:w-20 z-10"
                 initial={{ x: -50, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               />
-
-              {/* 2. รูปภาพหลัก + กรอบ (เป็น Layer กลาง) */}
               <motion.img
-                src="/img12.webp" // <<== แก้ Path รูปหลัก+กรอบ
+                src="/LDCIMG39.jpg"
                 alt="Main content"
-                // กำหนดขนาดด้วย max-w หรือ width เต็ม container และ aspect ratio จากรูปเอง
-                className="relative block w-full h-auto rounded-[36px] shadow-xl z-20" // << ใช้ relative, block และ z-20
+                className="relative block w-full h-auto rounded-[36px] shadow-xl z-20"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5 }}
               />
-
-              {/* 3. รูปภาพหัวใจ (อยู่บนสุด) */}
               <motion.img
-                src="./Like.png" // <<== แก้ Path รูปหัวใจ
+                src="/Like.png"
                 alt="Like"
-                className="absolute top-3 sm:top-4 right-[-10px] sm:right-[-15px] w-14 h-auto sm:w-16 z-30" // << ใช้ h-auto, ปรับตำแหน่ง/ขนาด
+                className="absolute top-3 sm:top-4 right-[-10px] sm:right-[-15px] w-32 sm:w-24 h-auto z-30"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.6, type: "spring", stiffness: 180 }}
               />
-
-              {/* 4. รูปภาพ Visualizer (อยู่บนสุด) */}
               <motion.img
-                src="/3d3.webp" // <<== แก้ Path รูป Visualizer
+                src="/LDCIMG36.png"
                 alt="Visualizer"
-                className="absolute bottom-5 sm:bottom-6 left-5 sm:left-6 w-20 sm:w-24 h-auto z-30" // << ใช้ h-auto
+                className="absolute bottom-5 sm:bottom-6 left-5 sm:left-6 w-32 sm:w-40 h-auto z-30"
                 initial={{ x: -30, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
               />
-
-              {/* 5. รูปภาพ Timestamp (อยู่บนสุด) */}
               <motion.img
-                src="/3d4.webp" // <<== แก้ Path รูป Timestamp
+                src="/LDCIMG39.png"
                 alt="Timestamp"
-                className="absolute bottom-5 sm:bottom-6 right-5 sm:right-6 w-16 sm:w-20 h-auto z-30" // << ใช้ h-auto
+                className="absolute bottom-5 sm:bottom-6 right-5 sm:right-6 w-24 sm:w-32 h-auto z-30"
                 initial={{ x: 30, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.9, duration: 0.5 }}
               />
             </motion.div>
 
-            {/* --- คอลัมน์ขวา (Heading เป็น Text, กราฟิกเป็น รูปภาพ) --- */}
+            {/* คอลัมน์ขวา */}
             <motion.div
               className="flex flex-col text-center md:text-left"
               variants={fadeInRight}
             >
-              {/* Heading (Text ใหม่ + Gradient + Animation) */}
               <motion.h2
-                variants={fadeInUp} // << ใช้ Animation เปิดตัวสำหรับ H2 ทั้งก้อน
-                initial="hidden" // << เพิ่ม initial/whileInView ให้ H2 โดยตรง
+                variants={fadeInUp}
+                initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
-                // Gradient Text Classes + ขนาด + Font
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-8 font-sans
-                           bg-clip-text text-transparent
-                           bg-[linear-gradient(90deg,rgba(131,58,180,1)_0%,rgba(253,29,29,1)_50%,rgba(252,176,69,1)_100%)]" // << ใส่ Gradient
+                              bg-clip-text text-transparent
+                              bg-[linear-gradient(90deg,rgba(131,58,180,1)_0%,rgba(253,29,29,1)_50%,rgba(252,176,69,1)_100%)]"
               >
-                {/* ใส่ข้อความใหม่ */}
                 มั่นใจเมื่อไหร่...ต้อง Afterdent!
               </motion.h2>
 
-              {/* Graphics Row (ใช้รูปภาพ) */}
               <motion.div
                 className="grid grid-cols-3 gap-3 sm:gap-4"
                 variants={staggerContainer}
               >
-                {/* Graphic 1: จึ้ง (รูปภาพ) */}
                 <motion.img
                   variants={fadeInUp}
-                  src="/img3.JPG" // <<== แก้ Path
+                  src="/img3.JPG"
                   alt="จึ้ง Graphic"
-                  className="w-full h-auto rounded-2xl shadow-md" // ขนาดจะปรับตาม Grid และรูปภาพ
+                  className="w-full h-auto rounded-2xl shadow-md"
                 />
-                {/* Graphic 2: ดึง (รูปภาพ) */}
                 <motion.img
                   variants={fadeInUp}
-                  src="/img9.webp" // <<== แก้ Path
+                  src="/LDCIMG33.jpg"
                   alt="ดึง Graphic"
                   className="w-full h-auto rounded-2xl shadow-md"
                 />
-                {/* Graphic 3: ดม (รูปภาพ) */}
                 <motion.img
                   variants={fadeInUp}
-                  src="/img13.webp" // <<== แก้ Path
+                  src="/LDCIMG39.jpg"
                   alt="ดม Graphic"
                   className="w-full h-auto rounded-2xl shadow-md"
                 />
