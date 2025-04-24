@@ -20,7 +20,16 @@
 
 html {
     scroll-behavior: smooth;
-    outline: 1px solid red !important;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+    background-color: rgb(36, 49, 132);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
 }
 
 body {
@@ -29,8 +38,8 @@ body {
     background-color: white;
     @apply font-sans antialiased overflow-x-hidden;
     @apply font-sans antialiased;
+    overflow-x: hidden;
     width: 100vw;
-    outline: 1px solid red !important;
     @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
 }
 @font-face {
