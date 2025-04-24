@@ -121,7 +121,7 @@ export const ProductPreview: Product[] = [
   {
     id: "p1",
     image: "/asset04.webp",
-    title: "ยาสีฟัน 0000AFTERDENT Delight Toothpaste กลิ่นแครนเบอรี่",
+    title: "ยาสีฟัน AFTERDENT Delight Toothpaste กลิ่นแครนเบอรี่",
     description:
       "เป็นยาสีฟันชนิดเจลสูตรอ่อนโยน ป้องกันฟันผุ ช่วยลดการเสียวฟัน ช่วยลดการสะสมของแบคทีเรียซึ่งเป็นสาเหตุของกลิ่นปากและอาการฟันผุ เหมาะสำหรับคนจัดฟัน ปริมาณ 100 กรัม",
     purchaseUrl:
@@ -201,4 +201,40 @@ export const features = [
     title: "Dentist Recommended",
     description: "Trusted by professionals for optimal oral health.",
   },
+];
+export interface SlideItem {
+  id: string;
+  backgroundImage: string; // <<== Path to background image
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
+// --- Example Slide Data (MUST EDIT PATHS & CONTENT!) ---
+export const presentationSlides: SlideItem[] = [
+  {
+    id: "slide1",
+    backgroundImage: "/LDCIMG42.jpg", // <<== *** แก้ Path ***
+    title: "Implants",
+    subtitle: "ทันตกรรมรากเทียม",
+    description:
+      "ทางเลือกใหม่สำหรับการใส่ฟันทดแทน สะดวก ไม่ต้องถอด และไม่ต้องสูญเสียเนื้อฟันซี่อื่น โดยทันตแพทย์เฉพาะทาง",
+  },
+  {
+    id: "slide2",
+    backgroundImage: "/clinic2.webp", // <<== *** แก้ Path ***
+    title: "Esthetics",
+    subtitle: "ทันตกรรมเพื่อความงาม",
+    description:
+      "ทันตแพทย์เฉพาะทาง ด้านการซ่อมแซมตัวฟันและการตกแต่งฟันเพื่อความสวยงาม",
+  },
+  {
+    id: "slide3",
+    backgroundImage: "/clinic1.webp", // <<== *** แก้ Path ***
+    title: "Orthodontics", // << ชื่อตามรูปที่ 2
+    subtitle: "ทันตกรรมจัดฟัน",
+    description:
+      "สำหรับผู้ที่ความผิดปกติในการสบฟัน ฟันห่าง ฟันซ้อนเก ทำให้ฟันเรียง ฟันสวย โดยทันตแพทย์เฉพาะทาง", // << เนื้อหาตามรูปที่ 2
+  },
+  // เพิ่ม Slides อื่นๆ ที่คุณต้องการ
 ];

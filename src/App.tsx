@@ -107,6 +107,23 @@ const companyValues = [
     description: "Prioritizing your health and confidence above all.",
   },
 ];
+export const fadeInBlur = {
+  hidden: { opacity: 0, filter: "blur(8px)", y: 20 },
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+export const staggerComments = {
+  visible: {
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
 const introLdcData = {
   image: "/images/ldc-dentist-image.jpg", // <<== *** แก้ Path รูปภาพ LDC ***
   subtitle: "ประสบการณ์ยาวนานกว่า 30 ปี",
@@ -306,6 +323,7 @@ function App() {
           </motion.div>
         </motion.div>
       </section>
+      <ShowPresentSection />
       {/* === จบ Hero Section === */}
       <section id="ldc-style">
         <LDCSection />
@@ -413,60 +431,53 @@ function App() {
               className="lg:col-span-1 flex flex-col gap-4 h-full" // << ลด Gap
               variants={fadeInRight}
             >
-              {/* ส่วน Comments (ใช้รูปภาพ 4 รูป) */}
+              {/* Comments Section */}
               <div className="bg-white rounded-2xl shadow-lg p-4 md:p-5 border border-gray-100 flex flex-col flex-grow">
-                {" "}
-                {/* << ลด Padding + เพิ่ม flex-grow */}
                 <h4 className="text-lg font-semibold text-gray-900 mb-3 font-sans flex-shrink-0">
-                  {" "}
-                  Comment{" "}
-                </h4>{" "}
-                {/* << ลด Text Size/mb */}
-                {/* Container รูปคอมเมนต์ (ไม่จำกัดความสูง) */}
+                  Comment
+                </h4>
+
                 <motion.div
-                  className="space-y-2 flex-grow"
-                  variants={staggerContainer}
+                  className="space-y-3 flex-grow"
+                  variants={staggerComments}
                   initial="hidden"
-                  animate="visible"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.3 }} // << แสดง animation ทุกครั้งที่ scroll ผ่าน
                 >
-                  {" "}
-                  {/* << ลด space-y + เพิ่ม flex-grow */}
-                  {/* แสดงรูปภาพคอมเมนต์ 4 รูป */}
+                  {/* Image 1 */}
                   <motion.img
-                    variants={fadeInUp}
-                    src="/1.avif"
+                    variants={fadeInBlur}
+                    src="/1.png"
                     alt="Comment 1"
                     className="w-full h-auto rounded-lg shadow-sm block"
                     loading="lazy"
-                  />{" "}
-                  {/* << แก้ Path */}
+                  />
+                  {/* Image 2 */}
                   <motion.img
-                    variants={fadeInUp}
-                    src="/2.avif"
+                    variants={fadeInBlur}
+                    src="/2.png"
                     alt="Comment 2"
                     className="w-full h-auto rounded-lg shadow-sm block"
                     loading="lazy"
-                  />{" "}
-                  {/* << แก้ Path */}
+                  />
+                  {/* Image 3 */}
                   <motion.img
-                    variants={fadeInUp}
-                    src="/3.avif"
+                    variants={fadeInBlur}
+                    src="/3.png"
                     alt="Comment 3"
                     className="w-full h-auto rounded-lg shadow-sm block"
                     loading="lazy"
-                  />{" "}
-                  {/* << แก้ Path */}
+                  />
+                  {/* Image 4 */}
                   <motion.img
-                    variants={fadeInUp}
-                    src="/4.avif"
+                    variants={fadeInBlur}
+                    src="/4.png"
                     alt="Comment 4"
                     className="w-full h-auto rounded-lg shadow-sm block"
                     loading="lazy"
-                  />{" "}
-                  {/* << แก้ Path */}
+                  />
                 </motion.div>
               </div>
-
               {/* ส่วน Join Group (ลด Padding/Text/Avatar Size) */}
               <div className="bg-yellow-400 rounded-2xl shadow-lg p-5 text-black flex-shrink-0">
                 {" "}
@@ -558,45 +569,53 @@ function App() {
         </div>
       </section>
       {/* === จบ Gallery Section === */}
-      {/* === Products Section (แก้ไข Heading ให้มี Gradient + Animation) === */}
-      {/* ใส่ id และ scroll-mt สำหรับ Navbar link */}
       <section id="products" className="py-12 md:py-16 bg-gray-50 scroll-mt-16">
-        {/* << ปรับ Padding ให้เท่า Gallery Section */}
         <div className="container mx-auto px-4 md:px-6">
-          {/* --- ส่วน Heading ที่ปรับปรุง --- */}
+          {/* Heading Animation + Gradient */}
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.4, 0.0, 0.2, 1] }} // << ใช้ Easing แบบนุ่มนวล
-            viewport={{ once: false, amount: 0.3 }}
-            className="text-center mb-12 md:mb-16" // << mb เหมือนเดิม หรือปรับลดได้
+            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="text-center mb-12 md:mb-16"
           >
-            {/* Heading h2: เปลี่ยนเป็น Gradient สี Cyan-Teal */}
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-cyan-600 to-teal-600 bg-clip-text text-transparent" // << Gradient Cyan-Teal
+            <motion.h2
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4, duration: 1 }}
+              className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-teal-500 bg-clip-text text-transparent"
             >
-              {/* คุณอาจจะเปลี่ยน Text ตรงนี้ด้วย */}
               ผลิตภัณฑ์ที่ดีที่สุดของเรา
-            </h2>
-            {/* Subtitle p: ใช้ font-sans */}
-            <p className="text-lg md:text-lg text-gray-500 max-w-2xl mx-auto font-sans">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 1 }}
+              className="text-lg text-gray-500 max-w-2xl mx-auto font-sans"
+            >
               ผลิตภัณฑ์แนะนำจากทันตแพทย์ รสชาติแครนเบอร์รี่หอมหวาน
               เหมาะสำหรับทุกเพศทุกวัย ช่วยลดความเสี่ยงการติดเชื้อและดูแลช่องปาก.
-            </p>
+            </motion.p>
           </motion.div>
 
-          {/* --- ส่วน Grid แสดง Product Cards (เรียกใช้ ProductCard ที่แก้แล้ว) --- */}
+          {/* Product Cards with Stagger Animation */}
           <motion.div
-            variants={staggerContainer} // ใช้ Variant ที่ลด Delay แล้ว
+            variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           >
-            {/* products และ ProductCard ถูกนิยามไว้ใน App.tsx */}
-            {/* ส่วนนี้จะเรียก ProductCard ที่เราแก้ไขให้มีปุ่มสั่งซื้อ และลด Animation แล้ว */}
             {ProductPreview.map((product) => (
-              <ProductCard key={product.id} {...product} />
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                viewport={{ once: true }}
+              >
+                <ProductCard {...product} />
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -899,7 +918,7 @@ function App() {
             <h3 className="text-2xl font-semibold text-white mb-6">
               เรื่องราวของเรา
             </h3>
-            <div className="prose max-w-full px-4 text-gray-200 text-left md:text-center">
+            <div className=" prose max-w-full px-4 text-gray-200 text-left md:text-center">
               <p>LDC Dental ก่อตั้งขึ้นในปี 1992...</p>
               <p>Afterdent เกิดจากความตั้งใจในการสร้างผลิตภัณฑ์...</p>
             </div>

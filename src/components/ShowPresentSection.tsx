@@ -1,16 +1,14 @@
-// src/components/ShowPresentSection.tsx
 import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
 import useEmblaCarousel, {
   EmblaCarouselType,
   EmblaOptionsType,
 } from "embla-carousel-react";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // Icons สำหรับปุ่ม
-// --- Import ข้อมูล Slides และ Type ---
-import { presentationSlides } from "../data"; // << ตรวจสอบ Path
-import type { SlideItem } from "../data"; // << ตรวจสอบ Path
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { presentationSlides } from "../data"; // ตรวจสอบ path ให้ถูก
+import type { SlideItem } from "../data";
 
-// --- Animation Variants (ถ้าต้องการ) ---
+// --- Animation Variants ---
 const fadeInUp = {
   hidden: { opacity: 0, y: 15 },
   visible: {
@@ -23,26 +21,20 @@ const staggerContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
 };
-// ------------------------------------
+// ---------------------------
 
 const ShowPresentSection: React.FC = () => {
-  const options: EmblaOptionsType = { loop: true, align: "center" }; // ตั้งค่า Carousel
+  const options: EmblaOptionsType = { loop: true, align: "center" };
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
-  const scrollPrev = useCallback(
-    () => emblaApi && emblaApi.scrollPrev(),
-    [emblaApi],
-  );
-  const scrollNext = useCallback(
-    () => emblaApi && emblaApi.scrollNext(),
-    [emblaApi],
-  );
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
   const scrollTo = useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    (index: number) => emblaApi?.scrollTo(index),
     [emblaApi],
   );
 
@@ -68,127 +60,106 @@ const ShowPresentSection: React.FC = () => {
   return (
     <section
       id="show-present"
-      className="py-16 md:py-20 bg-gray-50 font-sans overflow-hidden"
+      className="py-20 bg-white font-sans overflow-hidden"
     >
-      {" "}
-      {/* พื้นหลังเทาอ่อน */}
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Section Header (จัดกลาง) */}
-        <motion.div
-          className="text-center mb-10 md:mb-14 max-w-3xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInUp}
-        >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
-            {" "}
-            {/* สีเข้ม */}
+      <div className="container mx-auto px-4 md:px-8">
+        {/* Title */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#1D2A6C]">
             บริการทันตกรรมของเรา
           </h2>
-        </motion.div>
+        </div>
+
         {/* Carousel */}
-        <div className="relative">
-          {/* Embla Viewport */}
-          <div className="overflow-hidden rounded-2xl shadow-lg" ref={emblaRef}>
-            {/* Embla Container */}
-            <div className="flex">
+        <div className="relative max-w-5xl mx-auto">
+          <div ref={emblaRef} className="overflow-hidden">
+            <motion.div
+              className="flex"
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+            >
               {presentationSlides.map((slide) => (
-                // Embla Slide
                 <div
                   className="flex-grow-0 flex-shrink-0 w-full"
                   key={slide.id}
                 >
-                  {/* Slide Content */}
-                  <div className="relative aspect-[16/9] sm:aspect-[2/1] md:aspect-[16/7] bg-gray-200">
-                    {/* Background Image */}
-                    <img
-                      src={slide.backgroundImage}
-                      alt={`${slide.title} Background`}
-                      className="absolute inset-0 w-full h-full object-cover opacity-40" // << ปรับ Opacity
-                      loading="lazy"
-                    />
-                    {/* Text Overlay */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 bg-black/10">
-                      {" "}
-                      {/* << Overlay ดำจางๆ */}
+                  <motion.div
+                    className="relative aspect-[3/2] bg-white overflow-hidden rounded-2xl shadow-lg"
+                    variants={fadeInUp}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {/* Background Image with Blur */}
+                    <div className="absolute inset-0">
+                      <img
+                        src={slide.backgroundImage}
+                        alt={slide.title}
+                        className="w-full h-full object-cover scale-105 blur-sm opacity-70"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-white/60 to-white/90" />
+                    </div>
+
+                    {/* Slide Content */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
                       <motion.h3
-                        // Title Gradient (Blue-Purple)
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight mb-2 sm:mb-3
-                                   bg-gradient-to-r from-blue-600 via-purple-500 to-blue-600 bg-clip-text text-transparent"
-                        style={{
-                          WebkitTextStroke: "1px rgba(255,255,255,0.2)",
-                        }} // << เพิ่ม Stroke ขาวบางๆ
+                        className="text-5xl sm:text-6xl font-extrabold text-[#1D2A6C] mb-2"
+                        variants={fadeInUp}
                       >
                         {slide.title}
                       </motion.h3>
                       <motion.p
-                        className="text-lg sm:text-xl md:text-2xl font-semibold text-cyan-900 mb-2 sm:mb-4"
-                        style={{
-                          textShadow: "0 1px 2px rgba(255,255,255,0.5)",
-                        }}
+                        className="text-2xl sm:text-3xl font-semibold text-[#1D2A6C] mb-3"
+                        variants={fadeInUp}
                       >
-                        {" "}
-                        {/* << สีเข้ม + เงา */}
                         {slide.subtitle}
                       </motion.p>
-                      <motion.p className="text-xs sm:text-sm text-gray-700 max-w-xs sm:max-w-sm md:max-w-md">
+                      <motion.p
+                        className="text-base sm:text-lg text-gray-700 max-w-xl mx-auto"
+                        variants={fadeInUp}
+                      >
                         {slide.description}
                       </motion.p>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
-          {/* Navigation Buttons */}
+          {/* Arrows */}
           <button
-            className="absolute top-1/2 left-2 sm:left-4 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-2 shadow-md disabled:opacity-50 transition"
+            className="absolute top-1/2 left-[-1.5rem] sm:left-[-2rem] -translate-y-1/2 bg-[#1D2A6C] text-white p-3 rounded-full shadow-md hover:bg-blue-900 transition"
             onClick={scrollPrev}
-            disabled={prevBtnDisabled}
+            aria-label="Prev"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
+            <ChevronLeft className="w-5 h-5" />
           </button>
           <button
-            className="absolute top-1/2 right-2 sm:right-4 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-2 shadow-md disabled:opacity-50 transition"
+            className="absolute top-1/2 right-[-1.5rem] sm:right-[-2rem] -translate-y-1/2 bg-[#1D2A6C] text-white p-3 rounded-full shadow-md hover:bg-blue-900 transition"
             onClick={scrollNext}
-            disabled={nextBtnDisabled}
+            aria-label="Next"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
+            <ChevronRight className="w-5 h-5" />
           </button>
 
           {/* Pagination Dots */}
-          <div className="flex justify-center items-center gap-2 mt-6">
-            {scrollSnaps.map((_, index) => (
+          <div className="flex justify-center gap-2 mt-6">
+            {scrollSnaps.map((_, i) => (
               <button
-                key={index}
-                onClick={() => scrollTo(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                  index === selectedIndex
-                    ? "bg-teal-500 scale-125"
-                    : "bg-gray-300 hover:bg-gray-400"
+                key={i}
+                onClick={() => scrollTo(i)}
+                className={`w-3 h-3 rounded-full ${
+                  i === selectedIndex ? "bg-[#1D2A6C]" : "bg-gray-300"
                 }`}
-                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
-
-          {/* View All Button (Optional) */}
-          <div className="text-center mt-8">
-            <a
-              href="/services" // << ลิงก์ไปหน้า Services รวม (ถ้ามี)
-              className="inline-block bg-blue-900 text-white text-sm font-medium py-2.5 px-6 rounded-md shadow hover:bg-blue-800 transition-colors"
-            >
-              ดูทั้งหมด
-            </a>
-          </div>
-        </div>{" "}
-        {/* End of Relative Container for Carousel */}
-      </div>{" "}
-      {/* End of Main Container */}
+        </div>
+      </div>
     </section>
   );
 };
 
-export default ShowPresentSection; // <<< Export Component
+export default ShowPresentSection;
