@@ -35,7 +35,7 @@ import ProductCard from "./components/ProductCard"; // <<< เพิ่ม Impor
 // *** ตรวจสอบ Path ให้ถูกต้อง ***
 import { galleryImagesTop, galleryImagesBottom, products } from "./data";
 // --- Import Types (Optional แต่แนะนำ) ---
-import type { Product, Feature } from "./data";
+import { Product, Feature, ProductPreview } from "./data";
 import { Star } from "lucide-react";
 import { reviewsData } from "./data";
 // ============================================================
@@ -520,7 +520,7 @@ function App() {
       {/* === Gallery Section (PC Scroll จำกัดระยะ, รูปใหญ่+Fade, No Mobile View) === */}
       <section
         id="gallery"
-        className="py-12 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-white to-gray-50 scroll-mt-16 md:scroll-mt-20" // << ปรับ Padding
+        className="py-3 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-white to-gray-50 scroll-mt-16 md:scroll-mt-20" // << ปรับ Padding
       >
         <div className="container mx-auto px-4 md:px-6">
           {" "}
@@ -540,7 +540,7 @@ function App() {
             <span className="block text-5xl md:text-6xl bg-clip-text text-transparent my-1 md:my-2 leading-tight md:leading-none bg-[linear-gradient(90deg,rgba(131,58,180,1)_0%,rgba(253,29,29,1)_50%,rgba(252,176,69,1)_100%)]">
               Afterdent สูตรที่หมอใช้ในห้องฟัน
             </span>
-            <span className="block text-lg md:text-xl font-medium text-gray-600 mt-2">
+            <span className="block text-lg md:text-2xl font-medium text-gray-600 mt-2">
               {" "}
               {/* << ปรับ mt */}
               "หอมนาน ไม่เสียวฟัน"
@@ -595,7 +595,7 @@ function App() {
           >
             {/* products และ ProductCard ถูกนิยามไว้ใน App.tsx */}
             {/* ส่วนนี้จะเรียก ProductCard ที่เราแก้ไขให้มีปุ่มสั่งซื้อ และลด Animation แล้ว */}
-            {products.map((product) => (
+            {ProductPreview.map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}
           </motion.div>
@@ -829,7 +829,7 @@ function App() {
       {/* === About Section: LDC Dental & Afterdent === */}
       <section
         id="about"
-        className="w-screen py-16 md:py-24 bg-white scroll-mt-16 md:scroll-mt-20"
+        className="w-screen py-16 md:py-24 bg-[#243184] scroll-mt-16 md:scroll-mt-20"
       >
         <div className="container mx-auto px-4 md:px-6">
           {/* Header */}
@@ -840,10 +840,10 @@ function App() {
             variants={fadeInUp}
             className="text-center mb-12 md:mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
               LDC Dental & Afterdent
             </h2>
-            <p className="text-md md:text-lg text-gray-500 max-w-2xl mx-auto">
+            <p className="text-md md:text-lg text-gray-200 max-w-2xl mx-auto">
               การผสานความเชี่ยวชาญด้านทันตกรรมกับผลิตภัณฑ์ดูแลช่องปากธรรมชาติ
               เพื่อรอยยิ้มที่มั่นใจและสุขภาพดี
             </p>
@@ -851,44 +851,39 @@ function App() {
 
           {/* Mission & Vision Boxes */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 mb-16 md:mb-20">
-            {/* LDC Dental Box */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInLeft}
-              className="bg-gray-50 p-6 rounded-lg shadow-md"
+              className="bg-white p-6 rounded-lg shadow-md"
             >
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+              <h3 className="text-2xl font-semibold text-[#243184] mb-4">
                 วิสัยทัศน์ของ LDC Dental
               </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                มุ่งมั่นเป็นผู้นำด้านบริการสุขภาพช่องปาก
-                ด้วยทีมทันตแพทย์ผู้เชี่ยวชาญและเทคโนโลยีทันสมัย
+              <p className="text-gray-700 leading-relaxed mb-4">
+                มุ่งมั่นเป็นผู้นำด้านบริการสุขภาพช่องปาก...
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                ยกระดับมาตรฐานการบริการให้เทียบเท่าระดับสากล
-                เพื่อความพึงพอใจสูงสุดของผู้รับบริการ
+              <p className="text-gray-700 leading-relaxed">
+                ยกระดับมาตรฐานการบริการให้เทียบเท่าระดับสากล...
               </p>
             </motion.div>
 
-            {/* Afterdent Box */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeInRight}
-              className="bg-gray-50 p-6 rounded-lg shadow-md"
+              className="bg-white p-6 rounded-lg shadow-md"
             >
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+              <h3 className="text-2xl font-semibold text-[#243184] mb-4">
                 พันธกิจของ Afterdent
               </h3>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                เสริมสร้างสุขภาพช่องปากด้วยผลิตภัณฑ์ธรรมชาติ ปราศจากสารเคมี
-                เพื่อความมั่นใจในทุกยิ้ม
+              <p className="text-gray-700 leading-relaxed mb-4">
+                เสริมสร้างสุขภาพช่องปากด้วยผลิตภัณฑ์ธรรมชาติ...
               </p>
-              <p className="text-gray-600 leading-relaxed">
-                มุ่งเน้นความยั่งยืนและความปลอดภัยของผู้บริโภคเป็นสำคัญ
+              <p className="text-gray-700 leading-relaxed">
+                มุ่งเน้นความยั่งยืนและความปลอดภัยของผู้บริโภค...
               </p>
             </motion.div>
           </div>
@@ -901,19 +896,12 @@ function App() {
             variants={fadeInUp}
             className="text-center max-w-4xl mx-auto mb-16 md:mb-20"
           >
-            <h3 className="text-2xl font-semibold text-gray-800 mb-6">
+            <h3 className="text-2xl font-semibold text-white mb-6">
               เรื่องราวของเรา
             </h3>
-            <div className="prose lg:prose-lg max-w-none text-gray-600 text-left md:text-center">
-              <p>
-                LDC Dental ก่อตั้งขึ้นในปี 1992
-                โดยมีเป้าหมายในการให้บริการทันตกรรมที่มีคุณภาพสูงสุดแก่คนไทยทั่วประเทศ
-              </p>
-              <p>
-                Afterdent
-                เกิดจากความตั้งใจในการสร้างผลิตภัณฑ์ดูแลช่องปากที่ปลอดภัยและเป็นธรรมชาติ
-                เพื่อสุขภาพช่องปากที่ยั่งยืน
-              </p>
+            <div className="prose lg:prose-lg max-w-none text-gray-200 text-left md:text-center">
+              <p>LDC Dental ก่อตั้งขึ้นในปี 1992...</p>
+              <p>Afterdent เกิดจากความตั้งใจในการสร้างผลิตภัณฑ์...</p>
             </div>
           </motion.div>
 
@@ -925,10 +913,11 @@ function App() {
             variants={fadeInUp}
             className="text-center mb-12 md:mb-16"
           >
-            <h3 className="text-2xl font-semibold text-gray-800 mb-3">
+            <h3 className="text-2xl font-semibold text-white mb-3">
               ค่านิยมหลักของเรา
             </h3>
           </motion.div>
+
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -940,21 +929,21 @@ function App() {
               <motion.div
                 key={value.title}
                 variants={fadeInUp}
-                className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg border border-gray-100 transition-shadow hover:shadow-md"
+                className="flex flex-col items-center text-center p-6 bg-white rounded-lg border border-gray-100 transition-shadow hover:shadow-md"
               >
                 <div className="w-14 h-14 bg-gradient-to-br from-cyan-100 to-teal-100 rounded-full flex items-center justify-center mb-4 border border-white">
-                  <value.icon className="w-7 h-7 text-cyan-700" />
+                  <value.icon className="w-7 h-7 text-[#243184]" />
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-1">
+                <h4 className="text-lg font-semibold text-[#243184] mb-1">
                   {value.title}
                 </h4>
-                <p className="text-gray-600 text-sm">{value.description}</p>
+                <p className="text-gray-700 text-sm">{value.description}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
-      {/* --- Footer --- */}
+      {/* --- Footer ---  s */}
       <Footer />
     </div>
   );
