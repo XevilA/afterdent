@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LDCSection from "./components/ldc";
 import Present from "./components/present";
+import Team from "./components/Team";
 import ShowPresentSection from "./components/ShowPresentSection";
 // --- Framer Motion & I./components/GalleryRoxdw-
 import {
@@ -528,6 +529,7 @@ function App() {
         {/* ปิด Container */}
       </section>{" "}
       {/* ปิด Section */}
+      <Team />
       {/* === Gallery Section (PC Scroll จำกัดระยะ, รูปใหญ่+Fade, No Mobile View) === */}
       <section
         id="gallery"
