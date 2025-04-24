@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// --- Framer Motion & Intersection Observer ---
+import LDCSection from "./components/ldc";
+import Present from "./components/present";
+// --- Framer Motion & I./components/GalleryRoxdw-
 import {
   motion,
   useScroll,
@@ -39,6 +41,46 @@ import { reviewsData } from "./data";
 // === Local Data Definitions (อัปเดต Developer Info) ===
 // ============================================================
 // *** ข้อมูล Values (เหมือนเดิม) ***
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2, // ช้าละมุนขึ้น
+    },
+  },
+};
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      type: "spring",
+      stiffness: 30,
+      damping: 15,
+    },
+  },
+};
+const fadeInPopup = {
+  hidden: {
+    opacity: 0,
+    scale: 0.94,
+    y: 40,
+    filter: "blur(6px)",
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1], // Easing แบบ Apple
+    },
+  },
+};
 
 const companyValues = [
   {
@@ -106,29 +148,21 @@ const subtleTap = {
 // ============================================================
 // (ส่วนของ Components ทั้งหมดเหมือนเดิมจากครั้งก่อน - Navbar, GalleryRow, ProductCard, Feature, Footer)
 
-const GalleryRow = ({
-  images,
-  reverse = false,
-}: {
-  images: string[];
-  reverse?: boolean;
-}) => {
+const GalleryRow: React.FC<GalleryRowProps> = ({ images, reverse = false }) => {
   const { scrollYProgress } = useScroll();
 
-  // ปรับระยะเลื่อน: ลดค่าไม่ให้เกินจอ (เช่น -150 ถึง 150)
+  // ✅ เพิ่มระยะเลื่อนให้มากขึ้น
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    reverse ? [80, -150] : [-150, 80],
+    reverse ? [200, -400] : [-400, 200],
   );
 
-  // ปรับองศาหมุน: ไม่ให้เวียนหัวเกิน
   const rotate = useTransform(
     scrollYProgress,
     [0, 1],
-    reverse ? [-10, 0] : [0, -10],
+    reverse ? [-5, 0] : [0, -5],
   );
-
   return (
     <motion.div
       style={{ x }}
@@ -202,72 +236,67 @@ function App() {
       {/* === Hero Section (Video BG - แก้ไขใหม่) === */}
       <section
         id="hero"
-        // ใช้ h-screen เพื่อให้สูงเต็มจอ, min-h กันเนื้อหาล้นจอเล็ก
-        // flex flex-col เพื่อจัดเรียงแนวตั้ง, relative สำหรับ absolute children
         className="relative flex flex-col justify-center items-center h-screen min-h-[600px] text-center overflow-hidden px-4"
       >
-        {/* --- Video Background (z-0) --- */}
+        {/* Video Background */}
         <video
-          // !!!!! สำคัญมาก: แก้ Path ให้ถูกต้อง !!!!!
-          src="/LDCVIDEO.webm" // <<== ใส่ Path จริง! เช่น /videos/ldc-bg.mp4
+          src="/LDCVIDEO.webm"
           autoPlay
           loop
           muted
           playsInline
           loading="lazy"
-          // Style ให้เต็มพื้นที่ + อยู่หลังสุด + cover
           className="absolute inset-0 w-full h-full object-cover z-0"
-          // เพิ่ม type เพื่อความชัดเจน (Optional)
           type="video/webm"
         >
-          {/* Fallback Text */}
           เบราว์เซอร์ของคุณไม่รองรับวิดีโอ.
         </video>
-        {/* --- ลบ Gradient Overlay สีขาวออกไปก่อน --- */}
-        {/* <div className="absolute inset-0 bg-gradient-to-t from-white via-white/70 to-transparent z-10"></div> */}
-        {/* --- เพิ่ม Overlay สีดำจางๆ แทน (ถ้าต้องการให้อ่านง่าย) --- */}
-        <div className="absolute inset-0 bg-black/20 z-10"></div>{" "}
-        {/* << Overlay ดำ โปร่งแสง 20% */}
-        {/* Container เนื้อหา (z-20) */}
-        {/* เอา pb ออก ใช้ justify-center + items-center ของ Section แทน */}
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/20 z-10"></div>
+
+        {/* Content */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="relative z-20 max-w-4xl mx-auto" // << Content อยู่บน Overlay ดำ
+          viewport={{ once: false, amount: 0.3 }}
+          className="relative z-20 max-w-4xl mx-auto"
         >
-          {/* Logo (ถ้ามี) */}
+          {/* Logo */}
           <motion.div variants={fadeInUp} className="mb-4 md:mb-6">
             <img
               src="/logo.svg"
               alt="Afterdent Logo"
-              className="h-12 md:h-16 w-auto mx-auto"
+              className="h-20 md:h-24 w-auto mx-auto"
               loading="lazy"
             />
           </motion.div>
 
-          {/* Heading (ใช้ Font DB, สีขาว) */}
+          {/* Subtitle */}
           <motion.p
             variants={fadeInUp}
             className="text-base md:text-lg lg:text-2xl text-white/90 mb-2 md:mb-3"
           >
-            สูตรเฉพาะที่ทันตแพทย์ไว้วางใจ000 หอมนานไม่เสียวฟัน
+            หอมนานไม่เสียวฟัน
           </motion.p>
+
+          {/* Title */}
           <motion.h1
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight tracking-tight" // << สีขาว
-            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.4)" }} // << เงาเข้มขึ้น
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 leading-tight tracking-tight"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.4)" }}
           >
-            หอมนาน
-            <br /> ไม่เสียวฟัน
+            สูตรเฉพาะที่ทันตแพทย์
+            <br />
+            ไว้วางใจ
           </motion.h1>
 
-          {/* Button (ถ้ามี) */}
+          {/* CTA Button */}
           <motion.div variants={fadeInUp}>
             <motion.a
               href="#products"
-              className="inline-block bg-white text-teal-600 px-8 py-3 rounded-full ..."
+              className="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-semibold shadow-lg hover:scale-105 active:scale-95 transition-transform"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -277,189 +306,10 @@ function App() {
         </motion.div>
       </section>
       {/* === จบ Hero Section === */}
-      <section
-        ref={scaleSectionRef}
-        id="ldc-style-section"
-        className="py-16 md:py-24 bg-white scroll-mt-16 md:scroll-mt-20 overflow-hidden"
-      >
-        <div className="container mx-auto px-4 md:px-6 max-w-4xl">
-          {/* Text Section */}
-          <motion.div
-            className="text-center mb-12 md:mb-16"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 60, damping: 20 }}
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            <motion.p
-              className="text-base lg:text-lg text-gray-500 mb-2 md:mb-3"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 50 }}
-            >
-              ประสบการณ์ยาวนานกว่า 30 ปี
-            </motion.p>
-            <motion.h2
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 50 }}
-            >
-              เราพร้อมส่งมอบรอยยิ้ม
-              <br />
-              ด้วย <span className="text-teal-600">ทันตกรรมพรีเมียม</span>
-            </motion.h2>
-          </motion.div>
-
-          {/* Images Section */}
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8 items-end"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.2 } },
-            }}
-          >
-            {/* Left Image */}
-            <motion.div
-              className="md:col-span-3 rounded-2xl shadow-xl overflow-hidden bg-gray-100"
-              style={{ originY: 1 }}
-              initial={{ scale: 0.9, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ type: "spring", stiffness: 80, damping: 20 }}
-            >
-              <img
-                src="/dentist.jpg"
-                alt="Smiling Dentist"
-                className="w-full h-auto object-cover aspect-[4/3]"
-                loading="lazy"
-              />
-            </motion.div>
-
-            {/* Right Image */}
-            <motion.div
-              className="md:col-span-2 rounded-2xl shadow-xl overflow-hidden bg-gray-100"
-              style={{ originY: 1 }}
-              initial={{ scale: 0.9, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{
-                type: "spring",
-                stiffness: 80,
-                damping: 20,
-                delay: 0.2,
-              }}
-            >
-              <img
-                src="/img3.JPG"
-                alt="Dental Detail"
-                className="w-full h-auto object-cover aspect-[4/3]"
-                loading="lazy"
-              />
-            </motion.div>
-          </motion.div>
-        </div>
+      <section id="ldc-style">
+        <LDCSection />
       </section>
-      <section
-        id="introduction"
-        className="py-16 md:py-32 bg-gradient-to-b from-white to-gray-100 scroll-mt-16 md:scroll-mt-20 font-['IBM Plex Sans']"
-      >
-        <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-          <motion.div
-            className="bg-white rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 items-center"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: { opacity: 0, y: 50 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
-          >
-            <motion.div
-              className="relative w-full h-72 md:h-[600px] overflow-hidden"
-              variants={{
-                hidden: { opacity: 0, x: -50 },
-                visible: { opacity: 1, x: 0 },
-              }}
-            >
-              <motion.video
-                className="absolute inset-0 w-full h-full object-cover"
-                src="/afterdent4k.webm"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="none"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.div>
-
-            <motion.div
-              className="p-8 md:p-20 flex flex-col justify-center text-center md:text-left space-y-8"
-              variants={{
-                hidden: {},
-                visible: { transition: { staggerChildren: 0.2 } },
-              }}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <motion.h2
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                className="text-3xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400"
-              >
-                เปลี่ยนประสบการณ์ดูแลช่องปาก
-              </motion.h2>
-
-              <motion.p
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                className="text-base md:text-lg text-pink-600 leading-relaxed"
-              >
-                <span className="block md:hidden">
-                  Afterdent พร้อมดูแลสุขภาพช่องปากของคุณอย่างมืออาชีพ
-                  ด้วยสูตรเฉพาะที่ผ่านการทดสอบโดยทันตแพทย์
-                  มั่นใจในทุกครั้งที่คุณบ้วนปาก — ลดการระคายเคือง
-                  เพิ่มความชุ่มชื้น และช่วยลดความเสี่ยงในการติดเชื้อ.
-                </span>
-                <span className="hidden md:block">
-                  สุขภาพช่องปากที่ดี เริ่มต้นได้ตั้งแต่วันนี้ ด้วย Afterdent
-                  ผลิตภัณฑ์บ้วนปากที่ออกแบบร่วมกับทันตแพทย์
-                  เพื่อช่วยลดความเสี่ยงของการติดเชื้อ ดูแลเหงือกให้นุ่มชุ่มชื้น
-                  ด้วย Coenzyme Q10 & Xylitol ให้ความหวานอย่างปลอดภัย
-                  พร้อมกลิ่นหอมสดชื่น เปลี่ยนความน่าเบื่อของการดูแลช่องปาก
-                  ให้กลายเป็นกิจวัตรที่คุณรอคอย.
-                </span>
-              </motion.p>
-
-              <motion.div
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                className="flex justify-center md:justify-start"
-              >
-                <a
-                  href="#products"
-                  className="inline-block bg-pink-600 text-white text-sm md:text-base font-medium py-3 px-6 rounded-full shadow-lg hover:bg-pink-700 transition-all duration-300"
-                >
-                  สั่งซื้อเลย
-                </a>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      <Present />
       {/* === Section (ปรับขนาดเล็กลง + Equal Height + Comment ใช้รูป 4 รูป) === */}
       {/* 1. ลด Padding Section: py-10 md:py-14 */}
       <section
@@ -660,42 +510,47 @@ function App() {
         {/* ปิด Container */}
       </section>{" "}
       {/* ปิด Section */}
-      {/* === Gallery Section (Responsive - แสดงเฉพาะ Desktop) === */}
+      {/* === Gallery Section (PC Scroll จำกัดระยะ, รูปใหญ่+Fade, No Mobile View) === */}
       <section
         id="gallery"
-        className="py-10 md:py-14 overflow-hidden bg-gradient-to-b from-white to-gray-50 scroll-mt-16 md:scroll-mt-20"
+        className="py-12 md:py-16 lg:py-20 overflow-hidden bg-gradient-to-b from-white to-gray-50 scroll-mt-16 md:scroll-mt-20" // << ปรับ Padding
       >
         <div className="container mx-auto px-4 md:px-6">
           {" "}
           {/* << ใช้ px-4 เสมอ */}
           {/* Heading (Gradient) */}
           <motion.h2
-            initial={{ opacity: 0, y: 20, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }} // ใช้ fadeInUp ธรรมดา หรือ Variant ที่กำหนด
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.4, 0.0, 0.2, 1] }}
             viewport={{ once: true, amount: 0.3 }}
-            className="text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 text-gray-800 leading-tight"
+            className="text-4xl md:text-5xl font-bold text-center mb-10 md:mb-14 text-gray-800 leading-tight" // << ปรับ mb
           >
-            <span className="block text-gray-900">ออกแบบรอยยิ้ม</span>
+            <span className="block text-gray-900 text-3xl md:text-4xl">
+              ออกแบบรอยยิ้ม
+            </span>{" "}
+            {/* << ปรับขนาดบรรทัด 1 */}
             <span className="block text-5xl md:text-6xl bg-clip-text text-transparent my-1 md:my-2 leading-tight md:leading-none bg-[linear-gradient(90deg,rgba(131,58,180,1)_0%,rgba(253,29,29,1)_50%,rgba(252,176,69,1)_100%)]">
               Afterdent สูตรที่หมอใช้ในห้องฟัน
             </span>
-            <span className="block text-lg md:text-xl font-medium text-gray-600 mt-1">
-              "หอมนาน ไม่เสียวฟัน"{" "}
-              {/* << แก้ไขข้อความบรรทัด 3 ตามที่คุณใส่มา */}
+            <span className="block text-lg md:text-xl font-medium text-gray-600 mt-2">
+              {" "}
+              {/* << ปรับ mt */}
+              "หอมนาน ไม่เสียวฟัน"
             </span>
           </motion.h2>
-          {/* --- Desktop View (ใช้ GalleryRow ที่แก้ไข - จำกัดระยะเลื่อน) --- */}
+          {/* --- Desktop View (ใช้ GalleryRow ที่แก้แล้ว) --- */}
           {/* ส่วนนี้จะแสดงเฉพาะ md ขึ้นไป */}
-          <div className="hidden md:block space-y-6 lg:space-y-8">
-            {/* *** สำคัญ: ต้องแน่ใจว่า GalleryRow ที่เรียกใช้ คือเวอร์ชันที่แก้ useTransform แล้ว *** */}
-            {/* *** และต้อง Import GalleryRow เข้ามาในไฟล์นี้ด้วย *** */}
+          {/* เพิ่ม space-y-10 หรือ 12 */}
+          <div className="hidden md:block space-y-10 lg:space-y-12">
+            {/* *** ต้องแน่ใจว่า GalleryRow ที่เรียกใช้ คือเวอร์ชันที่แก้แล้ว *** */}
             <GalleryRow images={galleryImagesTop} />
             <GalleryRow images={galleryImagesBottom} reverse />
           </div>
-          {/* --- Mobile View (ถูกลบออกไปแล้ว) --- */}
+          {/* --- Mobile View (ถูกลบออก) --- */}
         </div>
       </section>
+      {/* === จบ Gallery Section === */}
       {/* === Products Section (แก้ไข Heading ให้มี Gradient + Animation) === */}
       {/* ใส่ id และ scroll-mt สำหรับ Navbar link */}
       <section id="products" className="py-12 md:py-16 bg-gray-50 scroll-mt-16">
@@ -706,7 +561,7 @@ function App() {
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.4, 0.0, 0.2, 1] }} // << ใช้ Easing แบบนุ่มนวล
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.3 }}
             className="text-center mb-12 md:mb-16" // << mb เหมือนเดิม หรือปรับลดได้
           >
             {/* Heading h2: เปลี่ยนเป็น Gradient สี Cyan-Teal */}

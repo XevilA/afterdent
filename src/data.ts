@@ -11,22 +11,24 @@ export interface Benefit {
 }
 // --- Gallery Data ---
 export const galleryImagesTop = [
-  "/img7.webp",
-  "/img8.webp",
-  "/img9.webp",
-  "/img10.webp",
-  "/img7.webp",
-  "/img11.webp",
-  "/img12.webp",
+  "/LDCIMG16.jpg",
+  "/LDCIMG24.jpg",
+  "/LDCIMG27.jpg",
+  "/LDCIMG18.jpg",
+  "/LDCIMG20.jpg",
+  "/LDCIMG19.jpg",
+  "/LDCIMG5.jpg",
+  "/LDCIMG3.jpg",
 ];
 export const galleryImagesBottom = [
-  "/img13.webp",
-  "/img1.JPG",
-  "/img2.JPG",
-  "/img3.JPG",
-  "/img4.JPG",
-  "/img5.png",
-  "/img6.png",
+  "/LDCIMG37.jpg",
+  "/LDCIMG16.jpg",
+  "/LDCIMG24.jpg",
+  "/LDCIMG11.jpg",
+  "/LDCIMG24.jpg",
+  "/LDCIMG25.jpg",
+  "/LDCIMG29.jpg",
+  "/LDCIMG31.jpg",
 ];
 
 // --- Types (แก้ไข Product Interface) ---
@@ -60,9 +62,9 @@ export const products: Product[] = [
   {
     id: "p1",
     image: "/asset04.webp",
-    title: "ยาสีฟัน AFTERDENT Cranberry Delight ชุ่มชื้น ช่วยสมานแผลในช่องปาก",
+    title: "ยาสีฟัน AFTERDENT Delight Toothpaste กลิ่นแครนเบอรี่",
     description:
-      "ฟื้นฟูสุขภาพช่องปาก พร้อมดูแลเหงือกอย่างอ่อนโยน ด้วยส่วนผสมจากธรรมชาติ กลิ่นแครนเบอร์รี่สดชื่น..",
+      "เป็นยาสีฟันชนิดเจลสูตรอ่อนโยน ป้องกันฟันผุ ช่วยลดการเสียวฟัน ช่วยลดการสะสมของแบคทีเรียซึ่งเป็นสาเหตุของกลิ่นปากและอาการฟันผุ เหมาะสำหรับคนจัดฟัน ปริมาณ 100 กรัม",
     purchaseUrl:
       "https://shopee.co.th/ยาสีฟัน-AFTERDENT-Cranberry-Delight-ชุ่มชื้น-ช่วยสมานแผลในช่องปาก-i.135011894.12024470629", // <<== *** แก้ไข URL ***
   },
@@ -71,15 +73,14 @@ export const products: Product[] = [
     image: "/asset01.webp",
     title: "น้ำยาบ้วนปาก AFTERDENT กลิ่นแครนเบอรี่ โฉมใหม่",
     description:
-      "น้ำยาบ้วนปาก AFTERDENT กลิ่นแครนเบอรี่ ขนาด 250ml สูตรผสมฟลูออไรด์ ช่วยลดกลิ่นปาก ทำความสะอาดล้ำลึก พร้อมดูแลเหงือกและเคลือบฟันให้แข็งแรง สดชื่นทุกครั้งที่ใช้",
+      "น้ำยาบ้วนปาก AFTERDENT กลิ่นแครนเบอรี่ ขนาด 500ml สูตรผสมฟลูออไรด์ ช่วยลดกลิ่นปาก ทำความสะอาดล้ำลึก พร้อมดูแลเหงือกและเคลือบฟันให้แข็งแรง สดชื่นทุกครั้งที่ใช้",
     purchaseUrl:
       "https://shopee.co.th/product/135011894/29975611175?d_id=29559&uls_trackid=52fi3tqd00ve&utm_content=2Mf9cQbpVLMYrG7Pa2tB9bqxNMqR", // <<== *** แก้ไข URL ***
   },
   {
     id: "p3",
-    image: "/ldc-1.webp",
-    title:
-      "น้ำยาบ้วนปาก AFTERDENT ขวดเล็ก 250ml. กลิ่นแครนเบอรี่ ผสมฟลูออไรด์ สดชื่น ไม่แสบปาก",
+    image: "/asset01.webp",
+    title: "น้ำยาบ้วนปาก AFTERDENT กลิ่นแครนเบอรี่ โฉมใหม่",
     description:
       "หอมสดชื่น อ่อนโยน ไม่แสบปาก เสริมฟันแข็งแรงด้วยฟลูออไรด์ ลดกลิ่นปาก พร้อมปกป้องช่องปากในทุกวัน.",
     purchaseUrl:
@@ -87,21 +88,20 @@ export const products: Product[] = [
   },
   {
     id: "p4",
-    image: "/ldc-2.webp",
-    title:
-      "AFTERDENT Bundle น้ำยาบ้วนปาก + ยาสีฟัน กลิ่นแครนเบอรี่ หอมสดชื่น ดูแลเหงือกและฟัน",
+    image: "/asset04.webp",
+    title: "ยาสีฟัน AFTERDENT Delight Toothpaste กลิ่นแครนเบอรี่",
     description:
-      "แพ็คคู่สุดคุ้ม! น้ำยาบ้วนปากขนาด 700ml+ยาสีฟันเจล 100g กลิ่นแครนเบอรี่ สูตรอ่อนโยน ดูแลเหงือก ลดกลิ่นปาก ลดเสียวฟัน พร้อม Coenzyme Q10 และ Aloe Vera.",
+      "เป็นยาสีฟันชนิดเจลสูตรอ่อนโยน ป้องกันฟันผุ ช่วยลดการเสียวฟัน ช่วยลดการสะสมของแบคทีเรียซึ่งเป็นสาเหตุของกลิ่นปากและอาการฟันผุ เหมาะสำหรับคนจัดฟัน ปริมาณ 100 กรัม",
     purchaseUrl:
       "https://shopee.co.th/Bundle-AFTERDENT-Cranberry-%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%A2%E0%B8%B2%E0%B8%9A%E0%B9%89%E0%B8%A7%E0%B8%99%E0%B8%9B%E0%B8%B2%E0%B8%81-%E0%B8%A2%E0%B8%B2%E0%B8%AA%E0%B8%B5%E0%B8%9F%E0%B8%B1%E0%B8%99-%E0%B8%81%E0%B8%A5%E0%B8%B4%E0%B9%88%E0%B8%99%E0%B9%81%E0%B8%84%E0%B8%A3%E0%B8%99%E0%B9%80%E0%B8%9A%E0%B8%AD%E0%B8%A3%E0%B8%B5%E0%B9%88-%E0%B8%AB%E0%B8%AD%E0%B8%A1%E0%B8%AA%E0%B8%94%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%99-i.135011894.29312090401", // <<== *** แก้ไข URL ***
   },
   {
     id: "p5",
-    image: "/ldc-3.webp",
+    image: "/LDCIMG3.jpg",
     title:
-      "น้ำยาบ้วนปาก AFTERDENT กลิ่นแครนเบอรี่ 700ml x3 สดชื่น ลดการระบมในช่องปาก",
+      "น้ำยาบ้วนปาก AFTERDENT กลิ่นแครนเบอรี่ โฉมใหม่ 700ml x3 สดชื่น ลดการระบมในช่องปาก",
     description:
-      "AFTERDENT น้ำยาบ้วนปาก กลิ่นแครนเบอรี่ ขนาด 700ml แพ็ก 3 ขวด สูตรอ่อนโยน หอมละมุน ลดกลิ่นปาก ลดการระบมแผลในช่องปาก ชุ่มชื้นด้วย Q10 และ Aloe Vera ดูแลเหงือกให้แข็งแรง ไม่แสบปาก.",
+      "น้ำยาบ้วนปาก AFTERDENT กลิ่นแครนเบอรี่ ขนาด 500ml x3 สูตรผสมฟลูออไรด์ ช่วยลดกลิ่นปาก ทำความสะอาดล้ำลึก พร้อมดูแลเหงือกและเคลือบฟันให้แข็งแรง สดชื่นทุกครั้งที่ใช้",
     purchaseUrl:
       "https://shopee.co.th/%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B8%A2%E0%B8%B2%E0%B8%9A%E0%B9%89%E0%B8%A7%E0%B8%99%E0%B8%9B%E0%B8%B2%E0%B8%81-AFTERDENT-%E0%B8%81%E0%B8%A5%E0%B8%B4%E0%B9%88%E0%B8%99%E0%B9%81%E0%B8%84%E0%B8%A3%E0%B8%99%E0%B9%80%E0%B8%9A%E0%B8%AD%E0%B8%A3%E0%B8%B5%E0%B9%88-%E0%B8%AA%E0%B8%94%E0%B8%8A%E0%B8%B7%E0%B9%88%E0%B8%99-%E0%B8%A5%E0%B8%94%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%A1%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B2%E0%B8%94%E0%B9%81%E0%B8%9C%E0%B8%A5%E0%B9%83%E0%B8%99%E0%B8%8A%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9B%E0%B8%B2%E0%B8%81-%E0%B9%81%E0%B8%9E%E0%B9%87%E0%B8%81-x3-i.135011894.26312080091", // <<== *** แก้ไข URL ***
   },
