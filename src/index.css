@@ -35,21 +35,21 @@ body {
 }
 @font-face {
     font-family: "DB Helvethaica Mon X"; /* << ชื่อที่จะใช้ */
-    src: url("/fonts/DBHelvethaicaMonX-Reg.woff2") format("woff2"); /* << แก้ชื่อไฟล์ Regular */
+    src: url("/fonts/DBHelvethaicaMonXCond.woff") format("woff2"); /* << แก้ชื่อไฟล์ Regular */
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: "DB Helvethaica Mon X";
-    src: url("/fonts/DBHelvethaicaMonX-Med.woff2") format("woff2"); /* << แก้ชื่อไฟล์ Medium (ถ้ามี) */
+    src: url("/fonts/DBHelvethaicaMonXCond.woff") format("woff2"); /* << แก้ชื่อไฟล์ Medium (ถ้ามี) */
     font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: "DB Helvethaica Mon X";
-    src: url("/fonts/DBHelvethaicaMonX-Bold.woff2") format("woff2"); /* << แก้ชื่อไฟล์ Bold */
+    src: url("/fonts/DBHelvethaicaMonXMed.ttf") format("ttf"); /* << แก้ชื่อไฟล์ Bold */
     font-weight: 700;
     font-style: normal;
     font-display: swap;

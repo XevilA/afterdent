@@ -24,3 +24,11 @@ dist-ssr
 *.sw?
 .qodo
 .vercel
+
+*storybook.log
+# Ignore tests and dev tools
+.storybook/
+src/stories/
+test-results/
+vitest.workspace.ts
+playwright.config.ts
